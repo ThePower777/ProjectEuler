@@ -32,4 +32,69 @@ public static class DigitHelpers
 
         return true;
     }
+
+    public static int GetTriangularNumber(int n) => n * (n + 1) / 2;
+
+    public static int GetSumDivisors(int n)
+    {
+        if (n < 1)
+        {
+            throw new ArgumentOutOfRangeException(nameof(n), "Input must be a positive integer.");
+        }
+        var sum = 1+n;
+        for (var i = 2; i <= Math.Sqrt(n); i++)
+        {
+            if (n % i == 0)
+            {
+                sum += i;
+                if (i != n / i)
+                {
+                    sum += n / i;
+                }
+            }
+        }
+        return sum;
+    }
+
+    public static int GetNumDivisors(int n)
+    {
+        if (n < 1)
+        {
+            throw new ArgumentOutOfRangeException(nameof(n), "Input must be a positive integer.");
+        }
+        var count = 0;
+        for (var i = 1; i <= Math.Sqrt(n); i++)
+        {
+            if (n % i == 0)
+            {
+                count += 2; // i and n/i
+                if (i == n / i)
+                {
+                    count--; // Correct for a perfect square
+                }
+            }
+        }
+        return count;
+    }
+
+    public static int GetDivisorsCount(int n)
+    {
+        if (n < 1)
+        {
+            throw new ArgumentOutOfRangeException(nameof(n), "Input must be a positive integer.");
+        }
+        var count = 2;
+        for (var i = 2; i <= Math.Sqrt(n); i++)
+        {
+            if (n % i == 0)
+            {
+                count += 2; // i and n/i
+                if (i == n / i)
+                {
+                    count--; // Correct for a perfect square
+                }
+            }
+        }
+        return count;
+    }
 }
