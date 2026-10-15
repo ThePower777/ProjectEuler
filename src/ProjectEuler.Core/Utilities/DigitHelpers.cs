@@ -41,7 +41,7 @@ public static class DigitHelpers
         {
             throw new ArgumentOutOfRangeException(nameof(n), "Input must be a positive integer.");
         }
-        var sum = 1+n;
+        var sum = 1 + n;
         for (var i = 2; i <= Math.Sqrt(n); i++)
         {
             if (n % i == 0)
@@ -96,5 +96,53 @@ public static class DigitHelpers
             }
         }
         return count;
+    }
+
+    public static BigInteger GetNextCollatz(BigInteger n)
+    {
+        try
+        {
+            if (n <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(n), "Input must be a positive integer.");
+            }
+            return n % 2 == 0 ? n / 2 : 3 * n + 1;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in GetNextCollatz: {ex.Message}, n:{n}");
+            throw;
+        }
+    }
+
+    public static BigInteger GetCollatzLength(BigInteger n)
+    {
+        if (n <= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(n), "Input must be a positive integer.");
+        }
+        var length = 1;
+        while (n != 1)
+        {
+            n = GetNextCollatz(n);
+            length++;
+        }
+        return length;
+    }
+
+    public static long GetCollatzSequenceLengthRecursive(long n)
+    {
+        if (n == 1)
+        {
+            return 1;
+        }
+        if (n % 2 == 0)
+        {
+            return 1 + GetCollatzSequenceLengthRecursive(n / 2);
+        }
+        else
+        {
+            return 1 + GetCollatzSequenceLengthRecursive(n * 3 + 1);
+        }
     }
 }
