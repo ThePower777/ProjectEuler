@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{194D8D1F-FB29-4F17-8F3A-520204488E37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectEuler.Core", "src\ProjectEuler.Core\ProjectEuler.Core.csproj", "{84D24D5C-99ED-4976-A13D-B90CE0388C30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectEuler.Problems", "src\ProjectEuler.Problems\ProjectEuler.Problems.csproj", "{B88FBB2E-2F07-456F-A4E1-861F8D0DA828}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectEuler.Runner", "src\ProjectEuler.Runner\ProjectEuler.Runner.csproj", "{5BB2B456-A0B0-4422-A8CE-AC4E5F69986D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{031C985C-FFEB-4D42-9F4D-3AC6E8491782}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectEuler.Tests", "tests\ProjectEuler.Tests\ProjectEuler.Tests.csproj", "{4AE9CA4E-A887-4EB4-9166-D13169F493E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmarks", "benchmarks", "{1CC17B93-B46C-47F4-9C64-D0940F1D26A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectEuler.Benchmarks", "benchmarks\ProjectEuler.Benchmarks\ProjectEuler.Benchmarks.csproj", "{9EFA0016-1EAC-4A71-A6D9-E492ECB58B76}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84D24D5C-99ED-4976-A13D-B90CE0388C30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84D24D5C-99ED-4976-A13D-B90CE0388C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84D24D5C-99ED-4976-A13D-B90CE0388C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84D24D5C-99ED-4976-A13D-B90CE0388C30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B88FBB2E-2F07-456F-A4E1-861F8D0DA828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B88FBB2E-2F07-456F-A4E1-861F8D0DA828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B88FBB2E-2F07-456F-A4E1-861F8D0DA828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B88FBB2E-2F07-456F-A4E1-861F8D0DA828}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BB2B456-A0B0-4422-A8CE-AC4E5F69986D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BB2B456-A0B0-4422-A8CE-AC4E5F69986D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BB2B456-A0B0-4422-A8CE-AC4E5F69986D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BB2B456-A0B0-4422-A8CE-AC4E5F69986D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AE9CA4E-A887-4EB4-9166-D13169F493E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AE9CA4E-A887-4EB4-9166-D13169F493E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AE9CA4E-A887-4EB4-9166-D13169F493E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AE9CA4E-A887-4EB4-9166-D13169F493E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EFA0016-1EAC-4A71-A6D9-E492ECB58B76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EFA0016-1EAC-4A71-A6D9-E492ECB58B76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EFA0016-1EAC-4A71-A6D9-E492ECB58B76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EFA0016-1EAC-4A71-A6D9-E492ECB58B76}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{84D24D5C-99ED-4976-A13D-B90CE0388C30} = {194D8D1F-FB29-4F17-8F3A-520204488E37}
+		{B88FBB2E-2F07-456F-A4E1-861F8D0DA828} = {194D8D1F-FB29-4F17-8F3A-520204488E37}
+		{5BB2B456-A0B0-4422-A8CE-AC4E5F69986D} = {194D8D1F-FB29-4F17-8F3A-520204488E37}
+		{4AE9CA4E-A887-4EB4-9166-D13169F493E1} = {031C985C-FFEB-4D42-9F4D-3AC6E8491782}
+		{9EFA0016-1EAC-4A71-A6D9-E492ECB58B76} = {1CC17B93-B46C-47F4-9C64-D0940F1D26A2}
+	EndGlobalSection
+EndGlobal

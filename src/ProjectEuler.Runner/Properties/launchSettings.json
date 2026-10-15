@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ProjectEuler.Runner": {
+      "commandName": "Project",
+      "commandLineArgs": "11"
+    }
+  }
+}

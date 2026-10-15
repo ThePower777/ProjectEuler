@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ProjectEuler.Core\ProjectEuler.Core.csproj" />
+    <ProjectReference Include="..\..\src\ProjectEuler.Problems\ProjectEuler.Problems.csproj" />
+  </ItemGroup>
+</Project>
