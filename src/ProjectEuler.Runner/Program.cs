@@ -52,30 +52,32 @@ if (selection.Count == 0)
     return 1;
 }
 
-var results = new List<(IProblem Problem, string Answer, TimeSpan Elapsed)>();
-Console.WriteLine($"{"#",4}  {"Title",-40} {"Answer",-24} {"Time",10}");
-Console.WriteLine(new string('-', 82));
+var results = new List<(IProblem Problem, string Answer, TimeSpan Elapsed, long MemoryBytes)>();
+Console.WriteLine(string.Format("{0,4}  {1,-40} {2,-24} {3,10} {4,12}", "#", "Title", "Answer", "Time", "Memory"));
+Console.WriteLine(new string('-', 104));
 
 foreach (var number in selection)
 {
     var problem = registry.Get(number);
     var sw = Stopwatch.StartNew();
+    var beforeAllocated = GC.GetTotalAllocatedBytes();
     var answer = problem.Solve();
     sw.Stop();
 
-    results.Add((problem, answer, sw.Elapsed));
+    var memory = GC.GetTotalAllocatedBytes() - beforeAllocated;
+    results.Add((problem, answer, sw.Elapsed, memory));
     var shown = answer.Length > 24 ? answer[..21] + "..." : answer;
-    Console.WriteLine($"{problem.Number,4}  {Truncate(problem.Title, 40),-40} {shown,-24} {Format(sw.Elapsed),10}");
+    Console.WriteLine($"{problem.Number,4}  {Truncate(problem.Title, 40),-40} {shown,-24} {Format(sw.Elapsed),10} {FormatBytes(memory),12}");
 }
 
 if (results.Count > 1)
 {
     Console.WriteLine();
-    Console.WriteLine($"Total: {Format(TimeSpan.FromTicks(results.Sum(r => r.Elapsed.Ticks)))}");
+    Console.WriteLine($"Total: {Format(TimeSpan.FromTicks(results.Sum(r => r.Elapsed.Ticks)))} | {FormatBytes(results.Sum(r => r.MemoryBytes))}");
     Console.WriteLine("Slowest:");
-    foreach (var (Problem, Answer, Elapsed) in results.OrderByDescending(r => r.Elapsed).Take(3))
+    foreach (var (Problem, Answer, Elapsed, MemoryBytes) in results.OrderByDescending(r => r.Elapsed).Take(3))
     {
-        Console.WriteLine($"  {Problem.Number,4}  {Format(Elapsed)}");
+        Console.WriteLine($"  {Problem.Number,4}  {Format(Elapsed)}  {FormatBytes(MemoryBytes)}");
     }
 }
 
@@ -102,5 +104,20 @@ static bool TryParseRange(string text, out int from, out int to)
 
 static string Format(TimeSpan t) =>
     t.TotalSeconds >= 1 ? $"{t.TotalSeconds:F2} s" : $"{t.TotalMilliseconds:F1} ms";
+
+static string FormatBytes(long bytes)
+{
+    string[] units = ["B", "KB", "MB", "GB", "TB"];
+    double value = bytes;
+    var unit = 0;
+
+    while (value >= 1024 && unit < units.Length - 1)
+    {
+        value /= 1024;
+        unit++;
+    }
+
+    return $"{value:0.##} {units[unit]}";
+}
 
 static string Truncate(string s, int max) => s.Length <= max ? s : s[..(max - 3)] + "...";
