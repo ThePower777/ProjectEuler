@@ -3,6 +3,12 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="SonarAnalyzer.CSharp">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\ProjectEuler.Core\ProjectEuler.Core.csproj" />
     <ProjectReference Include="..\ProjectEuler.Problems\ProjectEuler.Problems.csproj" />
   </ItemGroup>
