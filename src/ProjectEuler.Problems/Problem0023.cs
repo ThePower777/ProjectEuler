@@ -1,44 +1,57 @@
 using ProjectEuler.Core;
-using ProjectEuler.Core.Utilities;
 
 namespace ProjectEuler.Problems;
 
 public sealed class Problem0023 : ProblemBase
 {
+    private const int Limit = 28123;
+
     public override string Title => "Non-Abundant Sums";
 
     public override string Solve()
     {
-        var abundantNumbers = new List<int>();
-        for (var i = 1; i <= 28123; i++)
+        var divisorSums = new int[Limit + 1];
+        for (var divisor = 1; divisor <= Limit / 2; divisor++)
         {
-            if (i < DigitHelpers.GetSumDivisors(i, false))
+            for (var multiple = divisor * 2; multiple <= Limit; multiple += divisor)
             {
-                abundantNumbers.Add(i);
+                divisorSums[multiple] += divisor;
             }
         }
 
-        var allPairs = new HashSet<int>();
+        var abundantNumbers = new List<int>();
+        for (var number = 1; number <= Limit; number++)
+        {
+            if (divisorSums[number] > number)
+            {
+                abundantNumbers.Add(number);
+            }
+        }
+
+        var canBeWrittenAsAbundantSum = new bool[Limit + 1];
         for (var i = 0; i < abundantNumbers.Count; i++)
         {
             for (var j = i; j < abundantNumbers.Count; j++)
             {
                 var sum = abundantNumbers[i] + abundantNumbers[j];
-                if (sum <= 28123)
+                if (sum > Limit)
                 {
-                    allPairs.Add(sum);
+                    break;
                 }
+
+                canBeWrittenAsAbundantSum[sum] = true;
             }
         }
 
         var totalSum = 0;
-        for (var i = 1; i <= 28123; i++)
+        for (var number = 1; number <= Limit; number++)
         {
-            if (!allPairs.Contains(i))
+            if (!canBeWrittenAsAbundantSum[number])
             {
-                totalSum += i;
+                totalSum += number;
             }
         }
+
         return totalSum.ToString();
     }
 }
