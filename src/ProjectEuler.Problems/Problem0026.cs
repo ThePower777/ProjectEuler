@@ -26,14 +26,30 @@ public sealed class Problem0026 : ProblemBase
 
     private static int GetRecurringCycleLength(int denominator)
     {
+        var reducedDenominator = denominator;
+        while (reducedDenominator % 2 == 0)
+        {
+            reducedDenominator /= 2;
+        }
+
+        while (reducedDenominator % 5 == 0)
+        {
+            reducedDenominator /= 5;
+        }
+
+        if (reducedDenominator == 1)
+        {
+            return 0;
+        }
+
         var firstSeenAt = new Dictionary<int, int>();
         var remainder = 1;
         var position = 0;
 
-        while (remainder != 0 && !firstSeenAt.ContainsKey(remainder))
+        while (remainder != 0 && !firstSeenAt.TryGetValue(remainder, out _))
         {
             firstSeenAt[remainder] = position;
-            remainder = remainder * 10 % denominator;
+            remainder = remainder * 10 % reducedDenominator;
             position++;
         }
 

@@ -23,10 +23,13 @@ public sealed class ProblemRegistry
     /// <summary>Discovers every concrete IProblem with a parameterless constructor in the given assembly.</summary>
     public static ProblemRegistry FromAssembly(Assembly assembly)
     {
+        ArgumentNullException.ThrowIfNull(assembly);
+
         var problems = new SortedDictionary<int, IProblem>();
 
         var types = assembly.GetTypes()
-            .Where(t => t is { IsAbstract: false, IsInterface: false } && typeof(IProblem).IsAssignableFrom(t));
+            .Where(t => t is { IsAbstract: false, IsInterface: false } && typeof(IProblem).IsAssignableFrom(t))
+            .Where(t => t.GetConstructor(Type.EmptyTypes) is not null);
 
         foreach (var type in types)
         {

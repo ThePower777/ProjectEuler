@@ -77,42 +77,16 @@ public static class DigitHelpers
         return count;
     }
 
-    public static int GetDivisorsCount(int n)
-    {
-        if (n < 1)
-        {
-            throw new ArgumentOutOfRangeException(nameof(n), "Input must be a positive integer.");
-        }
-        var count = 2;
-        for (var i = 2; i <= Math.Sqrt(n); i++)
-        {
-            if (n % i == 0)
-            {
-                count += 2; // i and n/i
-                if (i == n / i)
-                {
-                    count--; // Correct for a perfect square
-                }
-            }
-        }
-        return count;
-    }
+    public static int GetDivisorsCount(int n) => GetNumDivisors(n);
 
     public static BigInteger GetNextCollatz(BigInteger n)
     {
-        try
+        if (n <= 0)
         {
-            if (n <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(n), "Input must be a positive integer.");
-            }
-            return n % 2 == 0 ? n / 2 : 3 * n + 1;
+            throw new ArgumentOutOfRangeException(nameof(n), "Input must be a positive integer.");
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error in GetNextCollatz: {ex.Message}, n:{n}");
-            throw;
-        }
+
+        return n % 2 == 0 ? n / 2 : 3 * n + 1;
     }
 
     public static BigInteger GetCollatzLength(BigInteger n)
