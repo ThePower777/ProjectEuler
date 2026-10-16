@@ -9,7 +9,7 @@ public sealed class Problem0014: ProblemBase
     public override string Title => "Longest Collatz Sequence";
 
     //This version run 6 second
-    public  string Solve2()
+    public static string Solve2()
     {
 
         BigInteger maxNum = 0;
@@ -28,8 +28,8 @@ public sealed class Problem0014: ProblemBase
 
     public override string Solve()
     {
-           
-        long currentSequenceLength = 0;
+
+        long currentSequenceLength; 
         long maxSequenceLength = 0;
         long result = 0;
         for (long currentNumber = 1; currentNumber < 1000000; currentNumber++)
