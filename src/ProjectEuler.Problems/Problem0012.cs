@@ -1,4 +1,3 @@
-using System.Numerics;
 using ProjectEuler.Core;
 using ProjectEuler.Core.Utilities;
 
@@ -10,16 +9,26 @@ public sealed class Problem0012 : ProblemBase
 
     public override string Solve()
     {
-
-        var divisorCount = 0;
-        var i = 1;
-        while (divisorCount < 500)
+        for (var i = 1; ; i++)
         {
-            var triangleNumber = DigitHelpers.GetTriangularNumber(i);
-            divisorCount = DigitHelpers.GetNumDivisors(triangleNumber);
-            i++;
+            var firstFactor = i;
+            var secondFactor = i + 1;
+            if (firstFactor % 2 == 0)
+            {
+                firstFactor /= 2;
+            }
+            else
+            {
+                secondFactor /= 2;
+            }
+
+            var divisorCount = DigitHelpers.GetNumDivisors(firstFactor)
+                * DigitHelpers.GetNumDivisors(secondFactor);
+            if (divisorCount >= 500)
+            {
+                return DigitHelpers.GetTriangularNumber(i).ToString();
+            }
         }
-        return DigitHelpers.GetTriangularNumber(i-1).ToString();
     }
 }
 
