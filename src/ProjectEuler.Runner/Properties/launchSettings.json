@@ -2,7 +2,7 @@
   "profiles": {
     "ProjectEuler.Runner": {
       "commandName": "Project",
-      "commandLineArgs": "21\r\n"
+      "commandLineArgs": "39\r\n"
     }
   }
 }
