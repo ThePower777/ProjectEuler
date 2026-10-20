@@ -120,6 +120,8 @@ public static class DigitHelpers
         }
     }
 
+    public static long GetPentagonNumber(int n) => n * (3 * n - 1) / 2; 
+
     public static IEnumerable<long> GetPandigitalNumbers(int v)
     {
         if (v is < 0 or > 9)

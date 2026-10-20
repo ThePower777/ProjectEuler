@@ -8,13 +8,13 @@ public class DigitHelpersTests
     [Fact]
     public void GetPandigitalNumbers_returns_every_permutation_without_leading_zero()
     {
-        Assert.Equal(new long[] { 102, 120, 201, 210 }, DigitHelpers.GetPandigitalNumbers(2));
+        Assert.Equal([102, 120, 201, 210], DigitHelpers.GetPandigitalNumbers(2));
     }
 
     [Fact]
     public void GetPandigitalNumbers_includes_zero_when_it_is_the_only_digit()
     {
-        Assert.Equal(new long[] { 0 }, DigitHelpers.GetPandigitalNumbers(0));
+        Assert.Equal([0], DigitHelpers.GetPandigitalNumbers(0));
     }
 
     [Theory]
