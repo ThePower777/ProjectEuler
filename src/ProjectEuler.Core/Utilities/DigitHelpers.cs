@@ -35,7 +35,7 @@ public static class DigitHelpers
 
     public static int GetTriangularNumber(int n) => n * (n + 1) / 2;
 
-    public static int GetSumDivisors(int n,bool includeN = true)
+    public static int GetSumDivisors(int n, bool includeN = true)
     {
         if (n < 1)
         {
@@ -120,7 +120,48 @@ public static class DigitHelpers
         }
     }
 
-    public static long GetPentagonNumber(int n) => n * (3 * n - 1) / 2; 
+    public static long GetPentagonNumber(int n) => n * (3 * n - 1) / 2;
+    public static long GetHexagonNumber(int n) => n * (2 * n - 1);
+
+    public static bool IsPentagonal(long x)
+    {
+        if (x < 1)
+        {
+            return false;
+        }
+        var n = (Math.Sqrt(24 * x + 1) + 1) / 6;
+        return n == Math.Floor(n);
+    }
+
+    public static bool IsHexagonal(long x)
+    {
+        if (x < 1)
+        {
+            return false;
+        }
+        var n = (Math.Sqrt(8 * x + 1) + 1) / 4;
+        return n == Math.Floor(n);
+    }
+
+    public static bool IsTriangular(long n)
+    {
+        if (n < 1)
+        {
+            return false;
+        }
+        var discriminant = 1 + 8 * n;
+        var sqrt = Math.Sqrt(discriminant);
+        return sqrt == Math.Floor(sqrt) && (sqrt - 1) % 2 == 0;
+    }
+
+    public static int GetTriangularIndex(long n)
+    {
+        if (!IsTriangular(n))
+        {
+            throw new ArgumentException("The number is not triangular.", nameof(n));
+        }
+        return (int)((Math.Sqrt(1 + 8 * n) - 1) / 2);
+    }
 
     public static IEnumerable<long> GetPandigitalNumbers(int v)
     {
@@ -155,4 +196,6 @@ public static class DigitHelpers
             }
         }
     }
+
+    
 }
