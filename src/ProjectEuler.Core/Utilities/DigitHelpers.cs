@@ -119,4 +119,38 @@ public static class DigitHelpers
             return 1 + GetCollatzSequenceLengthRecursive(n * 3 + 1);
         }
     }
+
+    public static IEnumerable<long> GetPandigitalNumbers(int v)
+    {
+        if (v is < 0 or > 9)
+        {
+            throw new ArgumentOutOfRangeException(nameof(v), "Input must be between 0 and 9.");
+        }
+
+        var numbers = new List<long>();
+        var usedDigits = new bool[v + 1];
+        AddPermutations(0, 0);
+        return numbers;
+
+        void AddPermutations(long number, int digitsUsed)
+        {
+            if (digitsUsed == usedDigits.Length)
+            {
+                numbers.Add(number);
+                return;
+            }
+
+            for (var digit = 0; digit <= v; digit++)
+            {
+                if (usedDigits[digit] || (digitsUsed == 0 && digit == 0 && v > 0))
+                {
+                    continue;
+                }
+
+                usedDigits[digit] = true;
+                AddPermutations(number * 10 + digit, digitsUsed + 1);
+                usedDigits[digit] = false;
+            }
+        }
+    }
 }
