@@ -197,5 +197,26 @@ public static class DigitHelpers
         }
     }
 
-    
+    public static BigInteger C(int n, int r)
+    {
+        if (r < 0 || r > n)
+        {
+            throw new ArgumentOutOfRangeException(nameof(r), "r must be between 0 and n.");
+        }
+        if (r == 0 || r == n)
+        {
+            return 1;
+        }
+        r = Math.Min(r, n - r); // Take advantage of symmetry
+        BigInteger numerator = 1;
+        BigInteger denominator = 1;
+        for (int i = 0; i < r; i++)
+        {
+            numerator *= (n - i);
+            denominator *= (i + 1);
+        }
+        return numerator / denominator;
+    }
+
+
 }
